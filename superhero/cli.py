@@ -1,12 +1,11 @@
 import click
 
-__version__ = '0.0.1'
-
 
 def print_version(ctx, param, value):
     if not value or ctx.resilient_parsing:
         return
-    click.echo('Current version is: ' + __version__)
+    import superhero
+    click.echo('Current version is: ' + superhero.__version__)
     ctx.exit()
 
 
