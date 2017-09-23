@@ -1,4 +1,6 @@
 import click
+import logging
+from .supervisor import Supervisor
 
 
 def print_version(ctx, param, value):
@@ -13,10 +15,26 @@ def print_version(ctx, param, value):
 @click.option('--version', is_flag=True, callback=print_version,
               expose_value=False, is_eager=True,
               help='Print out current version.')
-def cli():
-    pass
+@click.option('--log-level', '-l',
+              type=click.Choice(['debug', 'info', 'warning', 'error']),
+              help='Choose a logger level',
+              default='info')
+def cli(log_level):
+    fmt = '%(asctime)s [%(levelname)s] %(module)s: %(message)s'
+    logging.basicConfig(level=log_level.upper(), format=fmt)
 
 
 @cli.command()
 def hello():
+    """Hello world."""
     click.echo('Hello world!')
+
+
+@cli.command()
+@click.option('--daemon', is_flag=True, help='Run in daemon mode.')
+def serve(daemon):
+    """Start to server."""
+    if daemon:
+        raise NotImplementedError('Daemon mode is not implemented')
+    app = Supervisor()
+    app.run()
