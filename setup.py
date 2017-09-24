@@ -16,9 +16,19 @@ setup(
     version=version,
     packages=['superhero'],
     install_requires=[
-        'Click',
+        'click',
         'requests',
-        'gunicorn'
+        'gunicorn',
+        'werkzeug'
+    ],
+    classifiers=[
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Operating System :: POSIX',
+        'Topic :: Internet :: Platform',
     ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],

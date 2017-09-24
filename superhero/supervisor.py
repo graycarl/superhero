@@ -12,10 +12,10 @@ class Supervisor:
             SubprocessWorker(
                 self, 'reverse-proxy',
                 'gunicorn --workers 2 --bind localhost:8000 '
-                'superhero.samplewsgi:app'),
+                'superhero.revproxy'),
             SubprocessWorker(
                 self, 'sample-site',
-                'gunicorn --workers 2 --bind localhost:0 '
+                'gunicorn --workers 2 --bind localhost:8001 '
                 'superhero.samplewsgi:app'),
             SubprocessWorker(
                 self, 'console',
