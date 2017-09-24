@@ -20,7 +20,10 @@ def print_version(ctx, param, value):
               help='Choose a logger level',
               default='info')
 def cli(log_level):
-    fmt = '%(asctime)s [%(levelname)s] %(module)s: %(message)s'
+    if log_level == 'debug':
+        fmt = '%(asctime)s [%(levelname)s] %(module)s: %(message)s'
+    else:
+        fmt = '%(asctime)s [%(levelname)s]: %(message)s'
     logging.basicConfig(level=log_level.upper(), format=fmt)
 
 
@@ -37,4 +40,4 @@ def serve(daemon):
     if daemon:
         raise NotImplementedError('Daemon mode is not implemented')
     app = Supervisor()
-    app.run()
+    app.loop()

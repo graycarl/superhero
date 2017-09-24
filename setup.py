@@ -15,7 +15,11 @@ setup(
     name='Superhero',
     version=version,
     packages=['superhero'],
-    install_requires=['Click', 'requests'],
+    install_requires=[
+        'Click',
+        'requests',
+        'gunicorn'
+    ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     entry_points={
